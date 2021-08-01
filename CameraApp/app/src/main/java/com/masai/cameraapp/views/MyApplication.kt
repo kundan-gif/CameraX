@@ -1,4 +1,4 @@
-package com.masai.cameraapp
+package com.masai.cameraapp.views
 
 import android.app.Application
 import com.masai.cameraapp.data.MyDatabase

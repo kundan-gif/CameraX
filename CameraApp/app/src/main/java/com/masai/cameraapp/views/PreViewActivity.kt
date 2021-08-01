@@ -1,8 +1,9 @@
-package com.masai.cameraapp
+package com.masai.cameraapp.views
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.masai.cameraapp.R
 import kotlinx.android.synthetic.main.activity_pre_view.*
 
 
