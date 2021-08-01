@@ -1,6 +1,7 @@
 package com.masai.cameraapp
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -122,21 +123,19 @@ class MainActivity : AppCompatActivity() {
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                     val savedUri = Uri.fromFile(photoFile)
                     val msg = "Photo capture succeeded: $savedUri"
-                    Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+                   // Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
                     Log.d(TAG, msg)
                     val entity=MyEntity(savedUri.toString())
                     viewModel.addImages(entity)
+
+                    Glide.with(this@MainActivity).load(savedUri).centerCrop().into(photo_view_button)
+                    photo_view_button.setOnClickListener {
+                        val intent=Intent(this@MainActivity,PreViewActivity::class.java)
+                        intent.putExtra("imageKey",savedUri.toString())
+                        startActivity(intent)
+                    }
                 }
             })
-    }
-
-    /**
-     * This function will convert url to Bitmap
-     */
-    private fun gettingBitmap(url: String): Bitmap {
-        val mUrl = URL(url)
-        val image: Bitmap = BitmapFactory.decodeStream(mUrl.openConnection().getInputStream())
-        return image
     }
 
     private fun startCamera() {

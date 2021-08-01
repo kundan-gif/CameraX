@@ -34,9 +34,4 @@ class ImageAdapter(
     override fun getItemCount(): Int {
         return imageList.size
     }
-
-    fun setData(newData: List<MyEntity>) {
-        imageList = newData
-        notifyDataSetChanged()
-    }
 }
